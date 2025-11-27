@@ -1,0 +1,121 @@
+// Función principal modificada para buscar perfil o escalar
+
+function generarSensibilidades() {
+
+    const selectedModel = document.getElementById('device-model').value;
+
+    const resultadosDiv = document.getElementById('resultados');
+
+    
+
+    // --- Lógica de Perfil Precalculado (Como en la imagen) ---
+
+    if (DEVICE_DATA[selectedModel] && selectedModel !== 'Otro/Manual') {
+
+        const profile = DEVICE_DATA[selectedModel];
+
+        
+
+        // Simulación de valores precalculados para el perfil (adaptados al rango 0-200)
+
+        const finalResults = {
+
+            general: Math.round(profile.dpi * 0.3), // Ejemplo de cálculo para llegar a 200
+
+            reddot: Math.round(profile.dpi * 0.15),
+
+            scope2x: Math.round(profile.dpi * 0.25),
+
+            scope4x: Math.round(profile.dpi * 0.15),
+
+            sniper: Math.round(profile.dpi * 0.20)
+
+        };
+
+        
+
+        // Clasificación basada en el DPI/Modelo (simulando la lógica del iPhone)
+
+        const controlStyle = getControlType(finalResults.general);
+
+        const buttonSize = getButtonSize(finalResults.general);
+
+        document.getElementById('hz-display').innerHTML = `Hz Base: \(\){profile.hz} Hz`;
+
+        document.getElementById('dpi-display').innerHTML = `DPI Fijo: \(\){profile.dpi}`;
+
+        mostrarResultados(finalResults, profile.hz, profile.hz, controlStyle, buttonSize, profile.dpi);
+
+        return;
+
+    }
+
+    // --- Lógica de Escalado (Si selecciona 'Otro/Manual' o si no hay perfil) ---
+
+    
+
+    const baseHz = parseInt(document.getElementById('base-hz').value);
+
+    const targetHz = parseInt(document.getElementById('target-hz').value);
+
+    const scaleType = document.getElementById('scale-type').value;
+
+    
+
+    const sensBase = {
+
+        general: parseInt(document.getElementById('sens-general').value),
+
+        reddot: parseInt(document.getElementById('sens-reddot').value),
+
+        scope2x: parseInt(document.getElementById('sens-scope2x').value),
+
+        scope4x: parseInt(document.getElementById('sens-scope4x').value),
+
+        sniper: parseInt(document.getElementById('sens-sniper').value)
+
+    };
+
+    const deviceData = DEVICE_DATA['Otro/Manual']; // Usamos el manual si no hay perfil
+
+    const recommendedDPI = deviceData.dpi;
+
+    
+
+    document.getElementById('dpi-display').innerHTML = `DPI Sugerido: \(\){recommendedDPI}\)`;
+
+    let scaler;
+
+    if (scaleType === 'linear') {
+
+        scaler = scaleLinear;
+
+    } else {
+
+        scaler = scaleGamma;
+
+    }
+
+    const resultsRaw = {
+
+        general: scaler(sensBase.general, baseHz, targetHz),
+
+        reddot: scaler(sensBase.reddot, baseHz, targetHz),
+
+        scope2x: scaler(sensBase.scope2x, baseHz, targetHz),
+
+        scope4x: scaler(sensBase.scope4x, baseHz, targetHz),
+
+        sniper: scaler(sensBase.sniper, baseHz, targetHz)
+
+    };
+
+    
+
+    const controlStyle = getControlType(resultsRaw.general);
+
+    const buttonSize = getButtonSize(resultsRaw.general);
+
+    mostrarResultados(resultsRaw, baseHz, targetHz, controlStyle, buttonSize, recommendedDPI);
+
+}
