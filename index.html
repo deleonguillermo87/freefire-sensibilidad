@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Sensibilidad Free Fire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Generador de Sensibilidad Free Fire</h2>
+
+        <!-- MENÚ DE TELÉFONOS -->
+        <label for="telefono">Selecciona tu teléfono:</label>
+        <select id="telefono" onchange="seleccionarTelefono()">
+            <option value="">-- Seleccionar modelo --</option>
+            <option value="iPhone 11">iPhone 11</option>
+            <option value="iPhone 12">iPhone 12</option>
+            <option value="iPhone 13">iPhone 13</option>
+            <option value="Samsung A32">Samsung A32</option>
+            <option value="Samsung A52">Samsung A52</option>
+            <option value="Samsung S21">Samsung S21</option>
+            <option value="Xiaomi Redmi Note 10">Xiaomi Redmi Note 10</option>
+            <option value="Xiaomi Redmi Note 11">Xiaomi Redmi Note 11</option>
+            <option value="Poco X3 Pro">Poco X3 Pro</option>
+            <option value="Poco X5 Pro">Poco X5 Pro</option>
+        </select>
+
+        <!-- CAMPOS QUE SE LLENAN AUTOMÁTICAMENTE -->
+        <label for="dpi">DPI:</label>
+        <input type="number" id="dpi" readonly>
+
+        <label for="hz">Tasa de refresco (Hz):</label>
+        <input type="number" id="hz" readonly>
+
+        <!-- BOTÓN PARA CALCULAR -->
+        <button onclick="calcularSensibilidad()">Generar Sensibilidad</button>
+
+        <!-- RESULTADO -->
+        <p id="resultado"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
