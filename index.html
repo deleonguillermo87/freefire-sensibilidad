@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Aim FF Generator</title>
+<style>
+body {
+    background: #0c0c0c;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
+.container {
+    max-width: 480px;
+    margin: auto;
+    padding: 20px;
+    background: #111;
+    border-radius: 14px;
+    box-shadow: 0 0 12px #00eaff;
+}
+select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
+button {
+    background: #00d9ff;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover {
+    background: #0096b8;
+}
+.result-box {
+    background: #000;
+    border: 2px solid #00eaff;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>🔥 PRO AIM FREE FIRE GENERATOR 🔥</h2>
+
+<select id="marca">
+<option value="">Seleccione la marca</option>
+<option>Apple</option>
+<option>Samsung</option>
+<option>Xiaomi</option>
+<option>OPPO</option>
+</select>
+
+<select id="modelo">
+<option>Seleccione modelo</option>
+</select>
+
+<button onclick="generar(true)">Generar con DPI</button>
+<button onclick="generar(false)">Generar sin DPI</button>
+
+<div id="resultado" class="result-box"></div>
+
+</div>
+
+<script>
+const modelos = {
+    "Apple": [
+        "iPhone 11","iPhone 11 Pro","iPhone 11 Pro Max",
+        "iPhone 12","iPhone 12 Mini","iPhone 12 Pro","iPhone 12 Pro Max",
+        "iPhone 13","iPhone 13 Mini","iPhone 13 Pro","iPhone 13 Pro Max",
+        "iPhone 14","iPhone 14 Plus","iPhone 14 Pro","iPhone 14 Pro Max",
+        "iPhone 15","iPhone 15 Plus","iPhone 15 Pro","iPhone 15 Pro Max",
+        "iPhone 16","iPhone 16 Plus","iPhone 16 Pro","iPhone 16 Pro Max",
+        "iPhone 17","iPhone 17 Pro","iPhone 17 Pro Max"
+    ],
+    "Samsung": ["A05s"],
+    "Xiaomi": ["11 Lite 5G"],
+    "OPPO": ["Reno 11","Reno 11 Pro","Reno 10","Reno 10 Pro","Reno 8","Reno 8 Pro","Reno 7","Reno 7 Pro","F19","A57","A54"]
+};
+
+document.getElementById("marca").addEventListener("change", function () {
+    const marca = this.value;
+    const selectModelo = document.getElementById("modelo");
+    selectModelo.innerHTML = "";
+
+    modelos[marca].forEach(m => {
+        const opt = document.createElement("option");
+        opt.textContent = m;
+        selectModelo.appendChild(opt);
+    });
+});
+
+function random(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+function generar(conDPI) {
+    const marca = document.getElementById("marca").value;
+    const modelo = document.getElementById("modelo").value;
+
+    if (!marca || !modelo) {
+        alert("Seleccione marca y modelo");
+        return;
+    }
+
+    let general, redDot, x2, x4, boton, dpi;
+
+    if (modelo === "iPhone 11") {
+        general = random(120, 200);
+        redDot = random(80, 200);
+        x2 = random(80, 200);
+        x4 = random(80, 200);
+        boton = random(35, 47);
+    } else {
+        general = random(80, 200);
+        redDot = random(80, 200);
+        x2 = random(80, 200);
+        x4 = random(80, 200);
+        boton = random(30, 65);
+    }
+
+    const estilos = ["Preciso","Refinado","Sencillo"];
+    let estilo = estilos[random(0, estilos.length - 1)];
+
+    if (marca === "Apple") {
+        dpi = random(50, 120);
+        dpiTexto = `${estilo} ${dpi}`;
+    } else {
+        dpi = random(70, 500);
+        dpiTexto = dpi;
+    }
+
+    document.getElementById("resultado").innerHTML = `
+──────────────────────────<br>
+📱 ${modelo}<br>
+${conDPI ? `DPI: ${dpiTexto}<br>` : ""}
+General: ${general}<br>
+Red dot: ${redDot}<br>
+X2: ${x2}<br>
+X4: ${x4}<br>
+Botón: ${boton}<br>
+──────────────────────────
+`;
+}
+</script>
+
+</body>
+</html>
