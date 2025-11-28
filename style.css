@@ -1,0 +1,52 @@
+body {
+    background: radial-gradient(circle at top, #0d0124, #000);
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 350px;
+    text-align: center;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    background-color: #0c0c18;
+    color: white;
+    border: 1px solid #0084ff;
+}
+
+.btn {
+    width: 48%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #005eff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 0 15px #0080ff;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(0, 0, 30, 0.5);
+    border: 1px solid #0080ff;
+    box-shadow: 0 0 18px #0080ff;
+}
+.hidden { display: none; }
