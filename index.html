@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRO AIM GENERATOR</title>
+
+<style>
+body {
+  background: #050505;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 440px;
+  margin: auto;
+  padding: 22px;
+  border-radius: 15px;
+  background: linear-gradient(145deg,#0f0f0f,#1a1a1a);
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 15px #ff0000aa;
+}
+
+h2 {
+  font-size: 26px;
+  text-shadow: 0 0 10px red;
+  font-weight: 900;
+}
+
+select, button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 17px;
+  background: #161616;
+  color: white;
+  box-shadow: 0 0 6px #ff000050;
+}
+
+button {
+  background: #ff0000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  box-shadow: 0 0 15px red;
+  transform: scale(1.03);
+}
+
+#result {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #0d0d0d;
+  border: 1px solid red;
+  font-size: 17px;
+  white-space: pre-line;
+  box-shadow: 0 0 15px #ff000050;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>🔥 PRO AIM GENERATOR 🔥</h2>
+
+<select id="brand">
+<option value="">Selecciona Marca</option>
+<option value="apple">Apple</option>
+<option value="samsung">Samsung</option>
+<option value="xiaomi">Xiaomi</option>
+<option value="oppo">OPPO</option>
+</select>
+
+<select id="model">
+<option value="">Selecciona Modelo</option>
+</select>
+
+<button onclick="generate(true)">Generar con DPI</button>
+<button onclick="generate(false)">Generar sin DPI</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+// MODELOS
+const appleModels = [
+"iPhone 11","iPhone 11 Pro","iPhone 11 Pro Max",
+"iPhone 12","iPhone 12 Mini","iPhone 12 Pro","iPhone 12 Pro Max",
+"iPhone 13","iPhone 13 Mini","iPhone 13 Pro","iPhone 13 Pro Max",
+"iPhone 14","iPhone 14 Plus","iPhone 14 Pro","iPhone 14 Pro Max",
+"iPhone 15","iPhone 15 Plus","iPhone 15 Pro","iPhone 15 Pro Max",
+"iPhone 16","iPhone 16 Plus","iPhone 16 Pro","iPhone 16 Pro Max",
+"iPhone 17","iPhone 17 Pro","iPhone 17 Pro Max"
+];
+
+const samsungModels = ["Galaxy A24","Galaxy A34","Galaxy A54","Galaxy S22","Galaxy S23","Galaxy S24"];
+const xiaomiModels = ["Redmi Note 12 Pro","Redmi Note 13 Pro","POCO X3","POCO X4","POCO F4","POCO F5"];
+const oppoModels = ["Reno 10","Reno 11","Reno 11 Pro","Reno 12","Reno 12 Pro"];
+
+// MODEL LOADER
+document.getElementById("brand").addEventListener("change", function(){
+const brand = this.value;
+const modelDropdown = document.getElementById("model");
+modelDropdown.innerHTML = "<option value=''>Selecciona Modelo</option>";
+
+let arr = [];
+if (brand==="apple") arr=appleModels;
+if (brand==="samsung") arr=samsungModels;
+if (brand==="xiaomi") arr=xiaomiModels;
+if (brand==="oppo") arr=oppoModels;
+
+arr.forEach(m=>{
+let opt = document.createElement("option");
+opt.value=m; opt.textContent=m;
+modelDropdown.appendChild(opt);
+});
+});
+
+function rand(min,max){ return Math.floor(Math.random()*(max-min+1)+min); }
+
+function getDPI(model){
+if(["iPhone 11","iPhone 11 Pro","iPhone 11 Pro Max"].includes(model))
+  return rand(50,120); 
+return rand(90,120);
+}
+
+function getDPIStyle(){
+return ["Preciso","Refinado","Sencillo"][rand(0,2)];
+}
+
+function getButton(model){
+if(["iPhone 11","iPhone 11 Pro","iPhone 11 Pro Max"].includes(model))
+  return rand(38,55);
+return rand(35,70);
+}
+
+function generate(useDPI){
+const brand=document.getElementById("brand").value;
+const model=document.getElementById("model").value;
+if(!brand||!model){
+document.getElementById("result").innerText="Selecciona marca y modelo";
+return;
+}
+
+const general = rand(20,200);
+const red = rand(0,200);
+
+// X2 y X4 similares (diferencia max 25)
+let x2 = rand(50,200);
+let x4 = x2 + rand(-25,25);
+if(x4>200) x4=200;
+if(x4<50) x4=50;
+
+const button = getButton(model);
+
+let output = `📱 ${model}\n`;
+output+= `General: ${general}\n`;
+output+= `Red Dot: ${red}\n`;
+output+= `X2: ${x2}\n`;
+output+= `X4: ${x4}\n`;
+output+= `Botón: ${button}\n`;
+
+if(useDPI && brand==="apple"){
+const dpi=getDPI(model);
+output+= `DPI: ${getDPIStyle()} ${dpi}\n`;
+}
+
+document.getElementById("result").innerText = output;
+}
+</script>
+
+</body>
+</html>
