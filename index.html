@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sensibilidades WOODS_FF</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1 class="title">SENSIBILIDADES WOODS_FF</h1>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <label for="brand">Elige la marca</label>
+        <select id="brand"></select>
+      </div>
+
+      <div class="row">
+        <label for="model">Elige el modelo</label>
+        <select id="model"></select>
+      </div>
+
+      <div class="row">
+        <label for="btnSize">Tamaño del botón (0–100)</label>
+        <input id="btnSize" type="range" min="0" max="100" value="50" />
+        <div class="small">Valor: <span id="btnValue">50</span></div>
+      </div>
+
+      <div class="actions">
+        <button id="gen" class="btn btn-primary">🔥 Generar Pro Aim</button>
+      </div>
+    </section>
+
+    <section class="result" id="result" aria-live="polite" hidden>
+      <pre id="resultText"></pre>
+    </section>
+
+    <footer class="foot">
+      <small>Diseño: negro + dorado plano · Sensibilidades infinitas · Hz oculto · DPI visible según marca</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
