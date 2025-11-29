@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de Botes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1 class="title">🎰 Ruleta de Botes</h1>
+
+        <!-- DATOS DEL DISPOSITIVO -->
+        <div id="device-info" class="device-box">
+            <h2>📱 Tu dispositivo</h2>
+            <p><strong>Marca:</strong> <span id="device-brand">Detectando...</span></p>
+            <p><strong>Modelo:</strong> <span id="device-model">Detectando...</span></p>
+        </div>
+
+        <!-- BOTÓN GIRAR -->
+        <button id="spinButton">Girar</button>
+
+        <!-- RESULTADO -->
+        <div id="result" class="result-box">
+            <h2>Resultado:</h2>
+            <p id="prize">---</p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
