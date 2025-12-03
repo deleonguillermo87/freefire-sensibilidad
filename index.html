@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Aim Generator — Final</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>🔥 PRO AIM GENERATOR — FINAL</h2>
+
+    <!-- Marca -->
+    <label for="brand">Selecciona la marca</label>
+    <select id="brand" onchange="updateModels()">
+        <option value="">Seleccionar marca</option>
+        <option value="Apple">Apple</option>
+        <option value="Samsung">Samsung</option>
+        <option value="Xiaomi">Xiaomi</option>
+        <option value="Huawei">Huawei</option>
+        <option value="Honor">Honor</option>
+        <option value="OPPO">OPPO</option>
+        <option value="Vivo">Vivo</option>
+        <option value="Realme">Realme</option>
+        <option value="Tecno">Tecno</option>
+        <option value="Infinix">Infinix</option>
+    </select>
+
+    <!-- Modelo -->
+    <label for="modelo">Selecciona el modelo</label>
+    <select id="modelo">
+        <option value="">Seleccionar modelo</option>
+    </select>
+
+    <!-- DPI -->
+    <label for="dpi">DPI (solo Android)</label>
+    <input id="dpi" type="number" placeholder="0 a 900" min="0" max="900">
+
+    <!-- Hz -->
+    <label for="hz">Tasa de Hz</label>
+    <input id="hz" type="number" placeholder="60, 90, 120, 144" min="1">
+
+    <!-- Botones -->
+    <button id="generarConDpi">Generar con DPI</button>
+    <button id="generarSinDpi">Generar sin DPI</button>
+
+    <!-- Resultados -->
+    <div id="result" class="result"></div>
+
+</div>
+
+<script>
+/* ===========================
+   LISTA DE MODELOS POR MARCA
+   =========================== */
+const modelos = {
+    Apple: ["iPhone 11", "iPhone 12", "iPhone XR"],
+    Samsung: ["Samsung A15", "Samsung A23"],
+    Xiaomi: ["Xiaomi Redmi 12"],
+    Huawei: ["Huawei P30", "Huawei Y9"],
+    Honor: ["Honor X6", "Honor X8"],
+    OPPO: ["OPPO A17", "OPPO A57"],
+    Vivo: ["Vivo Y21", "Vivo Y27"],
+    Realme: ["Realme C55", "Realme 9"],
+    Tecno: ["Tecno Spark 10", "Tecno Camon 20"],
+    Infinix: ["Infinix Hot 30", "Infinix Note 12"]
+};
+
+function updateModels() {
+    const brand = document.getElementById("brand").value;
+    const modelSelect = document.getElementById("modelo");
+    modelSelect.innerHTML = "<option value=''>Seleccionar modelo</option>";
+
+    if (modelos[brand]) {
+        modelos[brand].forEach(modelo => {
+            const option = document.createElement("option");
+            option.value = modelo;
+            option.textContent = modelo;
+            modelSelect.appendChild(option);
+        });
+    }
+}
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
