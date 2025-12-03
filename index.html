@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Aim Generator — Final</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" role="application" aria-label="Pro Aim Generator">
+<h1>🔥 PRO AIM GENERATOR — FINAL</h1>
+
+<label for="brand">Marca del dispositivo</label>
+<select id="brand" onchange="updateModels()">
+  <option value="">Seleccionar marca</option>
+  <option value="Apple">Apple</option>
+  <option value="OPPO">OPPO</option>
+  <option value="Samsung">Samsung</option>
+  <option value="Xiaomi">Xiaomi</option>
+  <option value="Vivo">Vivo</option>
+  <option value="Realme">Realme</option>
+  <option value="Tecno">Tecno</option>
+  <option value="Infinix">Infinix</option>
+  <option value="Honor">Honor</option>
+  <option value="Huawei">Huawei</option>
+</select>
+
+<label for="model">Modelo del dispositivo</label>
+<select id="model">
+  <option value="">Seleccionar modelo</option>
+</select>
+
+<button onclick="generate(true)">GENERAR CON DPI</button>
+<button onclick="generate(false)">GENERAR SIN DPI</button>
+
+<div id="output" class="results" style="display:none"></div>
+<div class="muted">Nota: Apple muestra estilo + número (Preciso/Refinado/Sencillo). Otras marcas muestran solo el número DPI.</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
