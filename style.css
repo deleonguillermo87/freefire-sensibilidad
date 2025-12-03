@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 480px;
+    margin: auto;
+    padding: 20px;
+}
+
+select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
+
+button {
+    background: #ff3b3b;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.result {
+    margin-top: 25px;
+    padding: 18px;
+    border: 1px solid #444;
+    border-radius: 12px;
+}
