@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEMO SENSI</title>
+
+<style>
+body{
+  background:#0b0b0b;
+  color:#ff3333;
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+.app{
+  width:100%;
+  max-width:420px;
+  border:2px solid red;
+  border-radius:15px;
+  padding:20px;
+}
+h1{text-align:center;}
+select,button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:8px;
+  background:#111;
+  color:white;
+  border:1px solid red;
+}
+.rangos{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+}
+.rangos button{
+  width:32%;
+}
+.results{
+  margin-top:15px;
+  border:1px dashed red;
+  padding:12px;
+  white-space:pre-line;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+<h1>MEMO SENSI</h1>
+
+<select id="brand" onchange="updateModels()">
+<option value="">Marca</option>
+<option value="Apple">Apple</option>
+<option value="Samsung">Samsung</option>
+<option value="Xiaomi">Xiaomi</option>
+<option value="Motorola">Motorola</option>
+<option value="Honor">Honor</option>
+</select>
+
+<select id="model">
+<option value="">Modelo</option>
+</select>
+
+<div class="rangos">
+<button onclick="setRange('baja')">BAJA</button>
+<button onclick="setRange('media')">MEDIA</button>
+<button onclick="setRange('alta')">ALTA</button>
+</div>
+
+<button onclick="generate(true)">GENERAR CON DPI</button>
+<button onclick="generate(false)">GENERAR SIN DPI</button>
+
+<div id="output" class="results"></div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
